@@ -1,0 +1,157 @@
+/* TAJEMNICA KORONY — styl iluminowanego średniowiecznego manuskryptu.
+   Kolory można łatwo zmienić w sekcji :root. */
+:root {
+  --night:#181e16; --forest:#242e22; --gilt:#b88b3f; --bright-gilt:#f2d68e;
+  --parchment:#ecdbb0; --parchment-light:#f8edcb; --ink:#432a19;
+  --wine:#742c28; --leaf:#3f5940; --darkgold:#75521f;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0; min-height:100vh; color:#f0ddb0; font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:22px;
+  background:
+    radial-gradient(ellipse at 50% 8%,rgba(92,99,58,.24),transparent 45%),
+    radial-gradient(ellipse at 0% 70%,rgba(81,41,23,.2),transparent 60%),
+    repeating-linear-gradient(110deg,transparent 0 14px,rgba(255,231,171,.014) 15px 16px),
+    linear-gradient(#111a13,#232b20 42%,#111912);
+}
+body::before { content:""; position:fixed; z-index:-1; inset:10px; pointer-events:none;
+  border:3px double rgba(204,163,82,.22); outline:1px solid rgba(204,163,82,.13); outline-offset:-10px; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+.page-shell { width:min(920px,100%); margin:auto; padding:20px 24px 18px; }
+.top-filigree { text-align:center; font-size:32px; letter-spacing:.45em; color:var(--gilt); text-shadow:0 2px 4px #000; }
+.top-filigree span { font-size:18px; vertical-align:middle; }
+.hero { text-align:center; padding:18px 24px 9px; position:relative; }
+.hero::before,.hero::after { content:""; position:absolute; top:103px; width:56px; height:72px; opacity:.62; background-repeat:no-repeat; background-position:center; background-size:contain;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55 75'%3E%3Cg fill='none' stroke='%23ba9455' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M27 72V8 M27 35C11 31 8 20 16 16C23 12 27 19 23 23 M27 50C43 44 49 32 41 27C34 23 29 30 34 33 M27 57C11 55 7 46 12 42C18 37 23 43 20 47'/%3E%3C/g%3E%3C/svg%3E"); }
+.hero::before { left:6px; } .hero::after { right:6px; transform:scaleX(-1); }
+.crest { width:112px; height:116px; padding:19px; position:relative; margin:0 auto 19px;
+  border:4px double #bc8f47; border-radius:52% 52% 48% 48% / 24% 24% 68% 68%;
+  background:radial-gradient(circle,#553929,#22291e 72%); box-shadow:0 0 0 5px #1c241a,0 0 0 7px rgba(194,150,68,.48),0 12px 26px #070c09; }
+.crest::before,.crest::after { content:"✦"; position:absolute; top:41px; color:#c7a15f; font-size:22px; line-height:1; }
+.crest::before { left:-31px; } .crest::after { right:-31px; }
+.crest svg { width:100%; height:100%; fill:var(--bright-gilt); filter:drop-shadow(0 3px 1px #201b0d); }
+.eyebrow,.section-kicker { font-family:'Cinzel',Georgia,serif; font-weight:700; color:var(--bright-gilt); font-size:12px; letter-spacing:.09em; margin:0 0 12px; }
+.eyebrow span { color:#be9551; margin:0 9px; }
+h1,h2,h3 { font-family:'Cinzel',Georgia,serif; font-weight:400; }
+h1 { font-size:clamp(43px,8vw,76px); line-height:1.22; color:#f3ddb3; text-shadow:2px 3px 0 #2c1d13,0 0 22px rgba(224,162,69,.19); margin:0; }
+h1 span { display:block; color:var(--bright-gilt); }
+.hero-subtitle { max-width:610px; margin:20px auto 10px; line-height:1.3; font-size:clamp(21px,3vw,27px); color:#e5cf9e; }
+.divider-ornament { display:flex; align-items:center; justify-content:center; gap:13px; margin:27px auto 32px; color:#c99e55; }
+.divider-ornament span { width:150px; max-width:24vw; height:10px; border-top:1px solid #b88b4a; border-bottom:1px solid #b88b4a; transform:scaleY(.5); border-radius:80%; }
+.divider-ornament b { font-weight:400; font-size:27px; letter-spacing:.16em; }
+/* Ornamental manuscript panels rather than modern rectangle cards */
+.progress-card,.final-message {
+  position:relative; isolation:isolate;
+  border:8px ridge #8f6737;
+  border-radius:35px 12px 35px 12px / 16px 34px 16px 34px;
+  background:radial-gradient(ellipse at 48% -80%,#3d4b30,#222c21 74%);
+  box-shadow:inset 0 0 0 2px #d3ac67,inset 0 0 0 7px rgba(21,28,20,.95),0 13px 27px #0d120e;
+}
+.progress-card::before,.final-message::before { content:"✦"; position:absolute; top:-25px; left:50%; transform:translateX(-50%); font-size:40px; color:#e0bc72; text-shadow:1px 3px #2e200f; }
+.progress-card::after,.final-message::after { content:"◆                  ◆"; white-space:pre; position:absolute; bottom:-22px; left:50%; transform:translateX(-50%); font-size:28px; color:#c39a52; }
+.progress-card { padding:32px 38px 27px; }
+.progress-heading { display:flex; justify-content:space-between; align-items:center; gap:18px; }
+.progress-heading h2,.section-heading h2 { margin:0; font-size:clamp(21px,3.2vw,29px); }
+.progress-card .section-kicker { color:#d3b57c; margin-bottom:3px; }
+.progress-count { margin:0; white-space:nowrap; font-family:'Cinzel',Georgia,serif; color:#f2db9c; }
+.progress-count strong { font-size:39px; font-weight:400; }
+.progress-count span { color:#c9b28c; font-size:21px; }
+.progress-track { position:relative; height:19px; margin-top:17px; padding:4px; border:2px double #ba9254; border-radius:50px; background:#11190f; box-shadow:inset 0 3px 6px #000; }
+.progress-fill { width:0; height:100%; border-radius:50px; background:repeating-linear-gradient(110deg,#a87938 0 11px,#e9c97a 11px 18px,#be964b 18px 27px); box-shadow:0 0 9px #b38d45; transition:width .45s ease; }
+.progress-note { margin:13px 0 0; font-size:19px; text-align:center; color:#e6d0a2; }
+.quest-section { margin-top:65px; }
+.section-heading { display:flex; align-items:end; justify-content:space-between; padding:0 12px 17px; margin-bottom:26px; border-bottom:3px double #a27d42; position:relative; }
+.section-heading::after { content:"◆"; position:absolute; bottom:-14px; left:50%; background:#222b20; padding:0 12px; color:#d9b46c; }
+.section-heading .section-kicker { margin-bottom:7px; }
+.small-ornament { font-size:37px; color:#c8a25b; }
+.tasks { display:grid; gap:23px; }
+.task { position:relative; color:var(--ink); overflow:visible;
+  background:
+    radial-gradient(ellipse at 14% 24%,rgba(255,254,211,.72),transparent 50%),
+    repeating-linear-gradient(27deg,transparent 0 5px,rgba(94,62,27,.018) 6px 7px),
+    linear-gradient(105deg,#d7bd87 0%,#f5e8c4 5%,#efdfb4 50%,#e2c995 95%,#c9ac76 100%);
+  border:4px double #84602e;
+  border-radius:24px 5px 25px 6px / 10px 28px 9px 23px;
+  box-shadow:inset 0 0 0 3px #efdeb6,inset 0 0 0 5px rgba(139,94,40,.48),0 10px 17px #10150f;
+}
+/* Leafy corner ornaments + filigree motifs drawn in CSS SVG, no extra files. */
+.task::before,.task::after { position:absolute; content:""; width:67px; height:67px; pointer-events:none; z-index:0;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23805a29' stroke-width='2'%3E%3Cpath d='M3 67Q6 6 69 3M6 47Q35 43 37 13M23 29Q38 36 53 10'/%3E%3Cpath d='M7 31Q22 20 17 9Q4 13 7 31ZM24 35Q30 19 49 18Q44 36 24 35ZM39 18Q50 6 62 10Q56 22 39 18ZM11 53Q20 43 30 49Q22 61 11 53Z' fill='%23805a29' fill-opacity='.27'/%3E%3C/g%3E%3C/svg%3E"); background-size:contain; }
+.task::before { top:6px; left:7px; }
+.task::after { right:7px; bottom:6px; transform:rotate(180deg); }
+.task.is-complete { border-color:#607548; background:radial-gradient(ellipse at 15% 20%,#f4edd2,transparent 65%),linear-gradient(115deg,#c6cc9e,#ece4bb 15%,#dce0b6 85%,#b3be91); }
+.task-top { width:100%; display:flex; align-items:center; gap:15px; padding:24px 37px 13px 42px; border:0; background:transparent; color:inherit; text-align:left; position:relative; z-index:1; }
+.task-symbol { display:grid; flex:none; place-items:center; width:44px; height:44px; border:3px double #916b34; border-radius:50%; background:rgba(137,91,32,.11); font-size:28px; color:#805627; }
+.task.is-complete .task-symbol { color:#3e683c; border-color:#567445; }
+.task-title { font-family:'Cinzel',Georgia,serif; font-size:clamp(19px,3.2vw,26px); line-height:1.2; flex:1; color:#512d21; }
+.task-status { font-family:'Cinzel',Georgia,serif; font-size:10px; font-weight:700; color:#825b36; white-space:nowrap; }
+.task.is-complete .task-status { color:#3c6437; }
+.task-chevron { color:#835f34; font-size:23px; transition:transform .3s ease; }
+.task.is-open .task-chevron { transform:rotate(180deg); }
+.task-details { display:grid; grid-template-rows:0fr; transition:grid-template-rows .35s ease; }
+.task.is-open .task-details { grid-template-rows:1fr; }
+.task-details-inner { overflow:hidden; }
+.task-description { margin:2px 43px 15px 101px; padding:9px 15px 8px; border-left:3px double #a77c46; font-size:23px; line-height:1.26; white-space:pre-line; }
+.task-answer { display:flex; position:relative; z-index:1; gap:12px; padding:8px 39px 24px 100px; }
+.task-answer input { min-width:0; width:100%; padding:12px 16px; color:#442e1a; outline:none; background:rgba(255,247,215,.62); border:2px solid #a87d43; border-radius:12px 3px 12px 3px; box-shadow:inset 0 2px 5px rgba(90,60,22,.12); }
+.task-answer input:focus { border-color:#6f421f; box-shadow:0 0 0 3px rgba(114,61,27,.16); }
+.task-answer input::placeholder { color:#8b7759; }
+.task-answer button { flex:none; padding:11px 19px; border:3px double #e5c17a; border-radius:13px 3px 13px 3px; background:linear-gradient(125deg,#693a26,#43241d); font-family:'Cinzel',Georgia,serif; color:#f7e3b5; font-size:15px; box-shadow:0 3px 0 #482c1a; }
+.task-answer button:hover:not(:disabled) { background:linear-gradient(125deg,#8c5437,#583323); }
+.task-answer button:disabled { background:#546d47; border-color:#c0bc7d; box-shadow:none; cursor:default; }
+.task-feedback { position:relative; z-index:1; margin:-9px 40px 18px 100px; color:#852d26; font-size:19px; }
+.task-feedback:empty { display:none; }
+.task-feedback.success { color:#395e31; }
+.final-message { margin-top:50px; padding:40px 24px; text-align:center; }
+.final-message[hidden] { display:none; }
+.final-crown { font-size:62px; color:var(--bright-gilt); }
+.final-message h2 { font-size:37px; color:#f3d68c; margin:0 0 10px; }
+.final-message p { margin:10px 0; font-size:23px; }
+.final-location { font-size:27px!important; } .final-location strong { color:#f7d987; }
+footer { text-align:center; color:#d1ac6c; font-family:'Cinzel',Georgia,serif; font-size:16px; padding:52px 0 15px; } footer span { margin:0 18px; font-size:24px; }
+@media(max-width:620px) {
+ .page-shell { padding:14px 12px; } .hero { padding:15px 5px; }
+ .hero::before,.hero::after { content:""; position:absolute; top:103px; width:56px; height:72px; opacity:.62; background-repeat:no-repeat; background-position:center; background-size:contain;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 55 75'%3E%3Cg fill='none' stroke='%23ba9455' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M27 72V8 M27 35C11 31 8 20 16 16C23 12 27 19 23 23 M27 50C43 44 49 32 41 27C34 23 29 30 34 33 M27 57C11 55 7 46 12 42C18 37 23 43 20 47'/%3E%3C/g%3E%3C/svg%3E"); }
+.hero::before { left:6px; } .hero::after { right:6px; transform:scaleX(-1); }
+ .crest { width:91px; height:96px; padding:14px; }
+ .hero-subtitle { font-size:21px; }
+ .progress-card { padding:27px 20px 22px; border-width:5px; }
+ .progress-count strong { font-size:32px; }
+ .quest-section { margin-top:53px; }
+ .section-heading { padding-left:4px; padding-right:4px; }
+ .section-heading h2 { font-size:22px; } .small-ornament { font-size:25px; }
+ .task-top { padding:19px 16px 13px 21px; gap:9px; }
+ .task-symbol { width:32px; height:32px; font-size:21px; }
+ .task-title { font-size:18px; } .task-status { font-size:8px; }
+ .task-description { margin:0 21px 12px 24px; font-size:21px; }
+ .task-answer { padding:7px 17px 20px; gap:7px; }
+ .task-answer input { padding:10px; font-size:18px; }
+ .task-answer button { padding:9px 9px; font-size:12px; }
+ .task-feedback { margin:-7px 20px 17px; font-size:18px; }
+ .task::before,.task::after { width:38px; height:38px; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+
+/* WERSJA POPRAWIONA — regularne, symetryczne ornamenty i czytelne liternictwo. */
+.top-filigree {font-family:Georgia,serif; font-size:22px; letter-spacing:.33em; opacity:.86;}
+.top-filigree span {font-size:13px;}
+h1 {font-family:'Cinzel',Georgia,serif; font-size:clamp(40px,7.6vw,72px); font-weight:600; letter-spacing:.018em; line-height:1.21;}
+h2,h3,.task-title {font-family:'Marcellus',Georgia,serif; font-weight:400; letter-spacing:.01em;}
+.task-title {font-size:clamp(21px,3.2vw,28px);}
+.task-answer button {font-family:'Cinzel',Georgia,serif; font-weight:600; letter-spacing:.01em;}
+.progress-count,footer {font-family:'Cinzel',Georgia,serif;}
+.divider-ornament b {font-size:17px; letter-spacing:.26em;}
+.eyebrow,.section-kicker,.task-status {font-family:'Cinzel',Georgia,serif; letter-spacing:.075em;}
+.eyebrow {font-size:13px;}
+.progress-card::before,.final-message::before {font-size:19px; top:-14px; background:#222c21; padding:0 10px;}
+.progress-card::after,.final-message::after {font-size:17px; bottom:-11px; letter-spacing:.6em;}
+.small-ornament {font-size:23px;}
+@media(max-width:620px){
+ .hero::before,.hero::after {width:28px;height:48px;top:103px;}
+ .hero::before {left:-6px;} .hero::after {right:-6px;}
+ .task-title {font-size:20px;}
+}
