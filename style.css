@@ -155,3 +155,7 @@ h2,h3,.task-title {font-family:'Marcellus',Georgia,serif; font-weight:400; lette
  .hero::before {left:-6px;} .hero::after {right:-6px;}
  .task-title {font-size:20px;}
 }
+
+/* Tytuł rozpoczyna stronę — brak dekoracji nad nim. */
+.hero { padding-top: 8px; }
+.hero::before, .hero::after { display: none; }
