@@ -15,39 +15,41 @@ const USTAWIENIA = {
   zadania: [
     {
       id: "zadanie-a",
-      nazwa: "Królewski dekret",
-      tresc: "W archiwum odnaleziono tajemniczy dekret. Odszyfruj wiadomość i wpisz hasło, które skrywa.",
-      odpowiedzi: ["KRÓL"]
+      nazwa: "Zadanie 1",
+      tresc: "Podajcie właściwe cyfry w kolejności od najmniejszej do NAJWIĘKSZEJ.",
+      odpowiedzi: ["4573"]
     },
     {
       id: "zadanie-b",
-      nazwa: "Pieczęć strażnika",
-      tresc: "Strażnik pozostawił wskazówkę w swojej pieczęci. Rozwiąż zagadkę i wpisz odpowiedź.",
-      odpowiedzi: ["ZAMEK"]
+      nazwa: "Zadanie 2",
+      tresc: "Przeczytajcie fragment kroniki rodu i podajcie właściwe cyfry. <br><br> <i>Od zarania dziejów władcy królestwa otaczali szczególną czcią diamenty, wierząc, że kamienie te są darem gwiazd.</i>
+",
+      odpowiedzi: ["4312"]
     },
     {
       id: "zadanie-c",
-      nazwa: "Zaginiony manuskrypt",
-      tresc: "Odnajdź brakujący fragment manuskryptu. Jaki wyraz otwiera kolejną drogę?",
-      odpowiedzi: ["MAPA"]
+      nazwa: "Zadanie 3",
+      tresc: "Zagrajcie w wisielca, aby poznać liczbę",
+      odpowiedzi: ["102"]
     },
     {
       id: "zadanie-d",
-      nazwa: "Próba rycerza",
-      tresc: "Podejmij wyzwanie rycerza i odkryj ukryte hasło.",
-      odpowiedzi: ["MIECZ"]
+      nazwa: "Zadanie 4",
+      tresc: "Łachmany",
+      odpowiedzi: ["W workach ukryto odpowiedź. Nie możecie używać wzroku, jedynym narzędziem, którym dysponujecie, są Wasze dłonie. Korzystajcie z nich wyłącznie poprzez dotykanie worków z zewnątrz.
+"]
     },
     {
       id: "zadanie-e",
-      nazwa: "Sekret alchemika",
-      tresc: "Alchemik pozostawił zaszyfrowany przepis. Odczytaj sekretne słowo.",
-      odpowiedzi: ["ELIKSIR"]
+      nazwa: "Zadanie 5",
+      tresc: "Odpowiednio wykorzystajcie swoją zręczność i precyzję, aby odkryć cyfrę.",
+      odpowiedzi: ["4"]
     },
     {
       id: "zadanie-f",
-      nazwa: "Ostatnia przepowiednia",
-      tresc: "Przepowiednia wskaże ostatni trop. Rozwiąż ją, aby odkryć miejsce ukrycia korony.",
-      odpowiedzi: ["KORONA"]
+      nazwa: "Zadanie 6",
+      tresc: "Słowna",
+      odpowiedzi: ["Przed Wami ciąg trzech zagadek słownych. Każda rozwiązana zagadka wskaże Wam miejsce ukrycia kolejnej. Odnajdźcie prawidłowe lokalizacje, aż dotrzecie do ostatniej zagadki, której rozwiązanie pozwoli Wam ukończyć zadanie. "]
     }
   ]
 };
