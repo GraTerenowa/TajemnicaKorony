@@ -48,8 +48,8 @@ const USTAWIENIA = {
     {
       id: "zadanie-f",
       nazwa: "Zadanie 6",
-      tresc: "Słowna",
-      odpowiedzi: ["Przed Wami ciąg trzech zagadek słownych. Każda rozwiązana zagadka wskaże Wam miejsce ukrycia kolejnej. Odnajdźcie prawidłowe lokalizacje, aż dotrzecie do ostatniej zagadki, której rozwiązanie pozwoli Wam ukończyć zadanie. "]
+      tresc: "Przed Wami ciąg trzech zagadek słownych. Każda rozwiązana zagadka wskaże Wam miejsce ukrycia kolejnej. Odnajdźcie prawidłowe lokalizacje, aż dotrzecie do ostatniej zagadki, której rozwiązanie pozwoli Wam ukończyć zadanie.",
+      odpowiedzi: ["175"]
     }
   ]
 };
