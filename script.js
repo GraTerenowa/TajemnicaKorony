@@ -1,3 +1,4 @@
+
 /* =====================================================================
    USTAWIENIA GRY — EDYTUJ TYLKO TĘ CZĘŚĆ.
    Każde zadanie ma: id (nie zmieniaj w trakcie gry), nazwa, tresc, odpowiedzi.
@@ -22,9 +23,8 @@ const USTAWIENIA = {
     {
       id: "zadanie-b",
       nazwa: "Zadanie 2",
-      tresc: "Przeczytajcie fragment kroniki rodu i podajcie właściwe cyfry. <br><br> <i>Od zarania dziejów władcy królestwa otaczali szczególną czcią diamenty, wierząc, że kamienie te są darem gwiazd.</i>
-",
-      odpowiedzi: ["4312"]
+      tresc: "Przeczytajcie fragment kroniki rodu i podajcie właściwe cyfry. <br><br> <i>Od zarania dziejów władcy królestwa otaczali szczególną czcią diamenty, wierząc, że kamienie te są darem gwiazd.</i><br><br> <i> W królestwie panuje zasada, że zawsze starsi mają pierwszeństwo. </i>",
+      odpowiedzi: ["6537"]
     },
     {
       id: "zadanie-c",
@@ -35,9 +35,8 @@ const USTAWIENIA = {
     {
       id: "zadanie-d",
       nazwa: "Zadanie 4",
-      tresc: "Łachmany",
-      odpowiedzi: ["W workach ukryto odpowiedź. Nie możecie używać wzroku, jedynym narzędziem, którym dysponujecie, są Wasze dłonie. Korzystajcie z nich wyłącznie poprzez dotykanie worków z zewnątrz.
-"]
+      tresc: "W workach ukryto odpowiedź. Nie możecie używać wzroku, jedynym narzędziem, którym dysponujecie, są Wasze dłonie. Korzystajcie z nich wyłącznie poprzez dotykanie worków z zewnątrz.",
+      odpowiedzi: ["28"]
     },
     {
       id: "zadanie-e",
@@ -71,7 +70,11 @@ const finalLocationText = document.getElementById("final-location-text");
 function loadProgress() {
   try {
     const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-    return new Set(Array.isArray(saved) ? saved.filter(id => USTAWIENIA.zadania.some(z => z.id === id)) : []);
+    return new Set(
+      Array.isArray(saved)
+        ? saved.filter(id => USTAWIENIA.zadania.some(z => z.id === id))
+        : []
+    );
   } catch (error) {
     return new Set();
   }
@@ -89,21 +92,37 @@ function saveProgress() {
 }
 
 function normalize(value) {
-  return String(value).normalize("NFC").trim().replace(/\s+/g, " ").toLocaleLowerCase("pl-PL");
+  return String(value)
+    .normalize("NFC")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLocaleLowerCase("pl-PL");
 }
 
 function updateProgress() {
   const total = USTAWIENIA.zadania.length;
   const done = completed.size;
+
   completedCount.textContent = done;
+
   const countDenominator = document.querySelector(".progress-count span");
   countDenominator.textContent = ` / ${total}`;
+
   progressTrack.setAttribute("aria-valuemax", String(total));
   progressTrack.setAttribute("aria-valuenow", String(done));
+
   progressFill.style.width = `${total ? done / total * 100 : 0}%`;
+
   progressNote.textContent = done === total
     ? "Wszystkie zagadki rozwiązane. Korona czeka na odkrycie!"
-    : `Pozostało do rozwiązania: ${total - done} ${total - done === 1 ? "zagadka" : (total - done >= 2 && total - done <= 4 ? "zagadki" : "zagadek")}.`;
+    : `Pozostało do rozwiązania: ${total - done} ${
+        total - done === 1
+          ? "zagadka"
+          : (total - done >= 2 && total - done <= 4
+              ? "zagadki"
+              : "zagadek")
+      }.`;
+
   finalMessage.hidden = done !== total;
   finalLocationText.textContent = USTAWIENIA.miejsceUkryciaKorony;
 }
@@ -113,11 +132,13 @@ function renderTasks() {
 
   USTAWIENIA.zadania.forEach(task => {
     const isDone = completed.has(task.id);
+
     const card = document.createElement("article");
     card.className = `task${isDone ? " is-complete" : ""}`;
 
     // Unikalny identyfikator niezależny od znaków w nazwie zadania.
     const safeId = `opis-${USTAWIENIA.zadania.indexOf(task)}`;
+
     const top = document.createElement("button");
     top.type = "button";
     top.className = "task-top";
@@ -147,33 +168,47 @@ function renderTasks() {
     const details = document.createElement("div");
     details.className = "task-details";
     details.id = safeId;
+
     const inner = document.createElement("div");
     inner.className = "task-details-inner";
+
     const description = document.createElement("p");
     description.className = "task-description";
-    description.textContent = task.tresc;
+
+    // HTML umożliwia używanie <i>, <br>, <b> itp. w treści zadania.
+    description.innerHTML = task.tresc;
+
     inner.append(description);
     details.append(inner);
 
     top.addEventListener("click", () => {
       const isOpen = card.classList.toggle("is-open");
       top.setAttribute("aria-expanded", String(isOpen));
-      if (!completed.has(task.id)) status.textContent = isOpen ? "ZWIŃ" : "ROZWIŃ";
+
+      if (!completed.has(task.id)) {
+        status.textContent = isOpen ? "ZWIŃ" : "ROZWIŃ";
+      }
     });
 
     const form = document.createElement("form");
     form.className = "task-answer";
+
     const input = document.createElement("input");
     input.type = "text";
-    input.placeholder = isDone ? "Zadanie rozwiązane" : "Wpisz odpowiedź...";
+    input.placeholder = isDone
+      ? "Zadanie rozwiązane"
+      : "Wpisz odpowiedź...";
+
     input.setAttribute("aria-label", `Odpowiedź: ${task.nazwa}`);
     input.autocomplete = "off";
     input.spellcheck = false;
     input.disabled = isDone;
+
     const button = document.createElement("button");
     button.type = "submit";
     button.textContent = isDone ? "✓ GOTOWE" : "SPRAWDŹ";
     button.disabled = isDone;
+
     form.append(input, button);
 
     const feedback = document.createElement("p");
@@ -183,28 +218,48 @@ function renderTasks() {
 
     form.addEventListener("submit", event => {
       event.preventDefault();
+
       if (completed.has(task.id)) return;
-      const validAnswers = Array.isArray(task.odpowiedzi) ? task.odpowiedzi : [task.odpowiedzi];
-      if (validAnswers.some(answer => normalize(answer) === normalize(input.value))) {
+
+      const validAnswers = Array.isArray(task.odpowiedzi)
+        ? task.odpowiedzi
+        : [task.odpowiedzi];
+
+      if (
+        validAnswers.some(
+          answer => normalize(answer) === normalize(input.value)
+        )
+      ) {
         completed.add(task.id);
         saveProgress();
+
         card.classList.add("is-complete");
         symbol.textContent = "✓";
         status.textContent = "UKOŃCZONE";
+
         input.value = "";
         input.placeholder = "Zadanie rozwiązane";
         input.disabled = true;
+
         button.disabled = true;
         button.textContent = "✓ GOTOWE";
+
         feedback.classList.add("success");
         feedback.textContent = "Poprawna odpowiedź!";
+
         updateProgress();
+
         if (completed.size === USTAWIENIA.zadania.length) {
-          finalMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+          finalMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
         }
       } else {
         feedback.classList.remove("success");
-        feedback.textContent = input.value.trim() ? "To nie jest poprawna odpowiedź. Spróbuj ponownie." : "Najpierw wpisz odpowiedź.";
+        feedback.textContent = input.value.trim()
+          ? "To nie jest poprawna odpowiedź. Spróbuj ponownie."
+          : "Najpierw wpisz odpowiedź.";
       }
     });
 
@@ -217,5 +272,6 @@ renderTasks();
 updateProgress();
 
 // TESTOWANIE: aby wyczyścić swój postęp, otwórz konsolę przeglądarki (F12)
-// i wpisz: localStorage.removeItem('questworld-postep-tajemnica-korony-v1'); location.reload();
+// i wpisz:
+// localStorage.removeItem('questworld-postep-tajemnica-korony-v1'); location.reload();
 // Zmień końcówkę klucza, jeśli zmienisz idGry w ustawieniach.
