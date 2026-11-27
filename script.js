@@ -11,7 +11,7 @@ const USTAWIENIA = {
   // zapamiętane postępy graczy z poprzedniej edycji.
   idGry: "tajemnica-korony-v1",
 
-  miejsceUkryciaKorony: "STARA WIEŻA", // <-- ZMIEŃ TEKST FINAŁOWY
+  miejsceUkryciaKorony: "punkt startowy gry, podaj kod: GRALICJAxQUEST", // <-- ZMIEŃ TEKST FINAŁOWY
 
   zadania: [
     {
